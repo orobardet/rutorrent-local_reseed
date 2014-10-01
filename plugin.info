@@ -1,0 +1,4 @@
+plugin.description: Create a modified version of the torrent file using a specified private tracker
+plugin.author: Robardet
+plugin.version: 1.1
+rtorrent.remote: error
