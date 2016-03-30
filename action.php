@@ -62,7 +62,11 @@ if(isset($_REQUEST['hash']) && $saveUploadedTorrents)
 				$torrent_content = $torrent->__toString();
 				$dst_target = $reseedDistantTarget."/local_".$torrent->info['name'].".torrent";
 				
-				if (file_put_contents($dst_target, $torrent_content))
+				if (file_put_contents($dst_target, $torrent_content, 0, stream_context_create(array(
+                        'socket' => array(
+                            'bindto' => '0:0', // force to use IPV4
+                        ),
+                    ))))
 				{
 					$g_nReseed_Status = 1;
 					$g_sReseed_Msg = $torrent->info['name']." envoyé.";
